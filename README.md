@@ -1,6 +1,6 @@
 
 # Bitcoin Ticker 🤑
-## What you will create
+## What is this app?
 
 We’re going to make a crypto currency price checking app. I used Cupertino and Material Widgets in parallel and providing a different user interface depending on the platform.
 
