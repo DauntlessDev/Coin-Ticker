@@ -13,9 +13,9 @@ class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
   CoinData coinData = CoinData();
 
-  int roundedBtc;
-  int roundedEth;
-  int roundedLtc;
+  String roundedBtc;
+  String roundedEth;
+  String roundedLtc;
 
   @override
   void initState() {
@@ -24,6 +24,10 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   Future<void> updateUI() async {
+    roundedLtc = '?';
+    roundedBtc = '?';
+    roundedEth = '?';
+    
     var btcRateData = await coinData.getExchangeRate(selectedCurrency, 'BTC');
     var ethRateData = await coinData.getExchangeRate(selectedCurrency, 'ETH');
     var ltcRateData = await coinData.getExchangeRate(selectedCurrency, 'LTC');
@@ -31,14 +35,15 @@ class _PriceScreenState extends State<PriceScreen> {
     if (btcRateData != null && ltcRateData != null && ethRateData != null) {
       setState(() {
         double btcRate = btcRateData['rate'];
-        roundedBtc = btcRate.toInt();
+        roundedBtc = btcRate.toInt().toString();
         double ltcRate = ltcRateData['rate'];
-        roundedLtc = ltcRate.toInt();
+        roundedLtc = ltcRate.toInt().toString();
         double ethRate = ethRateData['rate'];
-        roundedEth = ethRate.toInt();
+        roundedEth = ethRate.toInt().toString();
       });
       return;
     }
+
   }
 
   DropdownButton<String> getDropDownButton() {
